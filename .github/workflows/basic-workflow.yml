@@ -1,0 +1,43 @@
+# Basic configuration
+name: Basic Workflow
+
+# trigger on
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Enter a name for this workflow run"
+        required: true
+        type: string
+        default: "My Workflow Run"
+
+      city:
+        description: "Enter the city"
+        required: true
+        type: choise
+        options:
+          - Delhi
+          - Banguluru
+          - Jaipur
+          - kolkata
+
+      fav_color:
+        description: "Is your favorite color Blue"
+        required: true
+        type: boolen
+        default: true
+
+  jobs:
+    greet:
+      name: "Greetings"
+      runs-on:
+        - ubuntu-latest
+      steps:
+        - name: "Say Hello"
+          run: |
+            echo "Hello, ${{github.event.inputs.name}}"
+            echo "Your city, ${{github.event.inputs.city}}"
+            echo "Your fev color, ${{github.event.inputs.fav_color}}"
+
+      
+      
